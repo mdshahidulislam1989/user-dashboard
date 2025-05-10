@@ -1,0 +1,22 @@
+{
+    "users": [
+      {
+        "id": 1,
+        "name": "John Doe",
+        "email": "john@example.com",
+        "phone": "1234567890",
+        "dob": "1990-01-01",
+        "status": "active",
+        "createdAt": "2023-01-15T10:00:00Z"
+      },
+      {
+        "id": 2,
+        "name": "Jane Smith",
+        "email": "jane@example.com",
+        "phone": "0987654321",
+        "dob": "1985-05-20",
+        "status": "inactive",
+        "createdAt": "2023-02-20T14:30:00Z"
+      }
+    ]
+  }
