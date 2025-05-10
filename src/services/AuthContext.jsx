@@ -8,7 +8,7 @@ export const AuthProvider = ({ children }) => {
   const navigate = useNavigate();
 
   const login = (email, password) => {
-    if (email === 'admin@example.com' && password === 'admin123') {
+    if (email === 'shahid@gmail.com' && password === '123456') {
       setUser({ email });
       navigate('/dashboard');
       return true;
