@@ -8,6 +8,7 @@ import '../styles/Users.scss';
 const Users = () => {
   const [users, setUsers] = useState([]);
   const [showModal, setShowModal] = useState(false);
+  const [viewMode, setViewMode] = useState(false);
   const [currentUser, setCurrentUser] = useState(null);
 
   useEffect(() => {
@@ -21,6 +22,11 @@ const Users = () => {
     };
     fetchUsers();
   }, []);
+  const handleNameClick = (user) => {
+    setCurrentUser(user);
+    setViewMode(true); 
+    setShowModal(true);
+  }
 
   const handleDelete = async (id) => {
     try {
@@ -43,6 +49,7 @@ const Users = () => {
             onClick={() => {
               setCurrentUser(null);
               setShowModal(true);
+              setViewMode(false); 
             }}
           >
             <Plus className="me-1" /> Add User
@@ -65,7 +72,8 @@ const Users = () => {
               <tbody>
                 {users.map((user) => (
                   <tr key={user.id}>
-                    <td>{user.name}</td>
+                    <td  className="clickable-name"
+                      onClick={() => handleNameClick(user)}>{user.name}</td>
                     <td className="text-truncate">{user.email}</td>
                     <td>{user.phone}</td>
                     <td>{new Date(user.dob).toLocaleDateString('en-US', {month: 'short', day: 'numeric', year: 'numeric'})}</td>
@@ -81,6 +89,7 @@ const Users = () => {
                           onClick={() => {
                             setCurrentUser(user);
                             setShowModal(true);
+                            setViewMode(false);
                           }}
                         >
                           <Pencil />
@@ -105,6 +114,7 @@ const Users = () => {
           onHide={() => setShowModal(false)}
           user={currentUser}
           setUsers={setUsers}
+          viewMode={viewMode}
         />
       </div>
     </div>

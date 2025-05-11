@@ -2,8 +2,9 @@ import { useState, useEffect } from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import axios from 'axios';
+import './UserModal.scss';
 
-const UserModal = ({ show, onHide, user, setUsers }) => {
+const UserModal = ({ show, onHide, user, setUsers, viewMode }) => {
   const isEdit = !!user;
 
   const validationSchema = Yup.object({
@@ -60,10 +61,10 @@ const UserModal = ({ show, onHide, user, setUsers }) => {
   if (!show) return null;
 
   return (
-    <div style={styles.modalOverlay}>
-      <div style={styles.modalContainer}>
-        <h2>{isEdit ? 'Edit User' : 'Create User'}</h2>
-        <form onSubmit={formik.handleSubmit} style={styles.form}>
+    <div className="modal-overlay">
+      <div className="modal-container">
+        <h2>{viewMode ? 'User Details' : isEdit ? 'Edit User' : 'Create User'}</h2>
+        <form onSubmit={formik.handleSubmit} className="form">
           <label>
             Name:
             <input
@@ -71,8 +72,11 @@ const UserModal = ({ show, onHide, user, setUsers }) => {
               name="name"
               value={formik.values.name}
               onChange={formik.handleChange}
+              disabled={viewMode}
             />
-            {formik.touched.name && formik.errors.name && <div style={styles.error}>{formik.errors.name}</div>}
+            {!viewMode && formik.touched.name && formik.errors.name && (
+              <div className="error">{formik.errors.name}</div>
+            )}
           </label>
 
           <label>
@@ -82,8 +86,11 @@ const UserModal = ({ show, onHide, user, setUsers }) => {
               name="email"
               value={formik.values.email}
               onChange={formik.handleChange}
+              disabled={viewMode}
             />
-            {formik.touched.email && formik.errors.email && <div style={styles.error}>{formik.errors.email}</div>}
+            {!viewMode && formik.touched.email && formik.errors.email && (
+              <div className="error">{formik.errors.email}</div>
+            )}
           </label>
 
           <label>
@@ -93,8 +100,11 @@ const UserModal = ({ show, onHide, user, setUsers }) => {
               name="phone"
               value={formik.values.phone}
               onChange={formik.handleChange}
+              disabled={viewMode}
             />
-            {formik.touched.phone && formik.errors.phone && <div style={styles.error}>{formik.errors.phone}</div>}
+            {!viewMode && formik.touched.phone && formik.errors.phone && (
+              <div className="error">{formik.errors.phone}</div>
+            )}
           </label>
 
           <label>
@@ -104,116 +114,55 @@ const UserModal = ({ show, onHide, user, setUsers }) => {
               name="dob"
               value={formik.values.dob}
               onChange={formik.handleChange}
+              disabled={viewMode}
             />
-            {formik.touched.dob && formik.errors.dob && <div style={styles.error}>{formik.errors.dob}</div>}
+            {!viewMode && formik.touched.dob && formik.errors.dob && (
+              <div className="error">{formik.errors.dob}</div>
+            )}
           </label>
 
-            <div style={styles.form}>
-           
-            <div style={styles.radioGroup}>
-                <label style={styles.radioLabel}>
-                <input
-                    type="radio"
-                    name="status"
-                    value="active"
-                    checked={formik.values.status === 'active'}
-                    onChange={formik.handleChange}
-                />
-                Active
-                </label>
-                <label style={styles.radioLabel}>
-                <input
-                    type="radio"
-                    name="status"
-                    value="inactive"
-                    checked={formik.values.status === 'inactive'}
-                    onChange={formik.handleChange}
-                />
-                Inactive
-                </label>
-            </div>
-            {formik.touched.status && formik.errors.status && (
-                <div style={styles.error}>{formik.errors.status}</div>
+          <div className="radio-group">
+            <label className="radio-label">
+              <input
+                type="radio"
+                name="status"
+                value="active"
+                checked={formik.values.status === 'active'}
+                onChange={formik.handleChange}
+                disabled={viewMode}
+              />
+              Active
+            </label>
+            <label className="radio-label">
+              <input
+                type="radio"
+                name="status"
+                value="inactive"
+                checked={formik.values.status === 'inactive'}
+                onChange={formik.handleChange}
+                disabled={viewMode}
+              />
+              Inactive
+            </label>
+          </div>
+          {!viewMode && formik.touched.status && formik.errors.status && (
+            <div className="error">{formik.errors.status}</div>
+          )}
+
+          <div className="button-group">
+            <button type="button" onClick={onHide} className="cancel-btn">
+              Cancel
+            </button>
+            {!viewMode && (
+              <button type="submit" className="submit-btn">
+                {isEdit ? 'Update' : 'Create'}
+              </button>
             )}
-            </div>
-
-
-          <div style={styles.buttonGroup}>
-            <button type="button" onClick={onHide} style={styles.cancelBtn}>Cancel</button>
-            <button type="submit" style={styles.submitBtn}>{isEdit ? 'Update' : 'Create'}</button>
           </div>
         </form>
       </div>
     </div>
   );
-};
-
-const styles = {
-  modalOverlay: {
-    position: 'fixed',
-    top: 0,
-    left: 0,
-    width: '100%',
-    height: '100%',
-    backgroundColor: 'rgba(0, 0, 0, 0.3)',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    zIndex: 999,
-  },
-  modalContainer: {
-    backgroundColor: '#fff',
-    borderRadius: '8px',
-    padding: '20px',
-    width: '100%',
-    maxWidth: '400px',
-    boxSizing: 'border-box',
-  },
-  form: {
-    display: 'flex',
-    flexDirection: 'column',
-    gap: '10px',
-  },
-  error: {
-    color: 'red',
-    fontSize: '0.8rem',
-  },
- 
-
-  radioGroup: {
-   
-    display: 'flex',
-    justifyContent: 'center',   
-    gap: '20px',
-  },
-  radioLabel: {
-    display: 'flex',
-    alignItems: 'center',
-    gap: '5px',
-    fontSize: '14px',
-    cursor: 'pointer',
-  },
-  buttonGroup: {
-    display: 'flex',
-    justifyContent: 'flex-end',
-    gap: '10px',
-    marginTop: '15px',
-  },
-  cancelBtn: {
-    backgroundColor: '#ccc',
-    padding: '8px 12px',
-    border: 'none',
-    borderRadius: '4px',
-    cursor: 'pointer',
-  },
-  submitBtn: {
-    backgroundColor: '#007bff',
-    color: '#fff',
-    padding: '8px 12px',
-    border: 'none',
-    borderRadius: '4px',
-    cursor: 'pointer',
-  },
 };
 
 export default UserModal;

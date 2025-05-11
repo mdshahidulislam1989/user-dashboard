@@ -51,7 +51,14 @@
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
     overflow: hidden;
   }
-
+  .clickable-name {
+    cursor: pointer;
+    color: #007bff;
+    text-decoration: underline;
+    &:hover {
+      color: #0056b3;
+    }
+  }
   .table-responsive {
     flex: 1;
     overflow: auto;

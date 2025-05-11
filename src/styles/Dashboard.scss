@@ -1,29 +1,28 @@
-
 .dashboard-page {
     display: flex;
     min-height: 100vh;
     background-color: #f8f9fa;
+    width: 100%;
   
-    
     .dashboard-content {
       flex: 1;
       padding: 1.5rem;
       margin-left: 250px;
       display: flex;
       flex-direction: column;
-      gap: 1.5rem;
-      height: 100vh;
+      gap: 1.5rem;     
+      min-height: 100vh;
+      overflow-y: auto; 
     }
   
     .users-table-wrapper {
       background: white;
       border-radius: 8px;
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-      flex: 0 0 auto;
       display: flex;
       flex-direction: column;
       height: 350px; 
-      overflow-y: hidden;
+      overflow: hidden;
   
       h3 {
         padding: 1rem;
@@ -36,12 +35,11 @@
       .table-container {
         flex: 1;
         overflow: auto;
-        position: relative;
       }
   
       table {
         width: 100%;
-        min-width: 900px; // Ensure horizontal scrolling
+        min-width: 900px;
         border-collapse: separate;
         border-spacing: 0;
   
@@ -83,11 +81,9 @@
     }
   
     .charts-grid {
-      flex: 1;
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       gap: 1.5rem;
-      min-height: 0; // Important for flex children
   
       .chart-card {
         background: white;
@@ -96,6 +92,7 @@
         padding: 1.25rem;
         display: flex;
         flex-direction: column;
+        min-height: 250px;
   
         .chart-title {
           font-size: 1rem;
@@ -106,7 +103,6 @@
   
         .chart-container {
           flex: 1;
-          min-height: 250px;
           position: relative;
   
           > div {
@@ -115,12 +111,14 @@
             left: 0;
             right: 0;
             bottom: 0;
+            width: 100%;
+            height: 100%;
           }
         }
       }
     }
   
-    // Tablet (768px - 991px)
+   
     @media (max-width: 991px) {
       .dashboard-content {
         padding: 1rem;
@@ -151,19 +149,23 @@
   
         .chart-card {
           padding: 1rem;
-          
+          min-height: 200px ;
+        
+  
           .chart-title {
             font-size: 0.95rem;
           }
   
-          .chart-container {
-            min-height: 200px;
+          .chart-container > div {
+            align-items: center;
+            transform: scale(0.9);
+            transform-origin: top left;
           }
         }
       }
     }
   
-    // Mobile (< 768px)
+  
     @media (max-width: 767px) {
       .dashboard-content {
         padding: 0.75rem;
@@ -192,9 +194,8 @@
             font-size: 0.75rem;
           }
   
-          // Hide less important columns on mobile
-          th:nth-child(4), td:nth-child(4), /* DOB */
-          th:nth-child(6), td:nth-child(6) /* Registered On */ {
+          th:nth-child(4), td:nth-child(4), 
+          th:nth-child(6), td:nth-child(6) {
             display: none;
           }
         }
@@ -206,16 +207,20 @@
   
         .chart-card {
           padding: 0.75rem;
-          
+          min-height: 180px ;
+         
           .chart-title {
             font-size: 0.9rem;
             margin-bottom: 0.75rem;
           }
   
-          .chart-container {
-            min-height: 180px;
+          .chart-container > div {
+           align-items: center;
+            transform: scale(0.8);
+            transform-origin: top left;
           }
         }
       }
     }
   }
+  
