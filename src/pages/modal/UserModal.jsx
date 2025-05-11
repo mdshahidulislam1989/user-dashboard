@@ -50,6 +50,7 @@ const UserModal = ({ show, onHide, user, setUsers }) => {
         phone: user.phone,
         dob: user.dob,
         status: user.status,
+        createdAt: user.createdAt,
       });
     } else {
       formik.resetForm();

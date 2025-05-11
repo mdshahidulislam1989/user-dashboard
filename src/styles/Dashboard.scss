@@ -1,0 +1,221 @@
+
+.dashboard-page {
+    display: flex;
+    min-height: 100vh;
+    background-color: #f8f9fa;
+  
+    
+    .dashboard-content {
+      flex: 1;
+      padding: 1.5rem;
+      margin-left: 250px;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      height: 100vh;
+    }
+  
+    .users-table-wrapper {
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      flex: 0 0 auto;
+      display: flex;
+      flex-direction: column;
+      height: 350px; 
+      overflow-y: hidden;
+  
+      h3 {
+        padding: 1rem;
+        margin: 0;
+        font-size: 1.2rem;
+        background-color: #f8f9fa;
+        border-bottom: 1px solid #e9ecef;
+      }
+  
+      .table-container {
+        flex: 1;
+        overflow: auto;
+        position: relative;
+      }
+  
+      table {
+        width: 100%;
+        min-width: 900px; // Ensure horizontal scrolling
+        border-collapse: separate;
+        border-spacing: 0;
+  
+        th, td {
+          padding: 0.75rem 1rem;
+          vertical-align: middle;
+          border-bottom: 1px solid #e9ecef;
+          white-space: nowrap;
+        }
+  
+        th {
+          position: sticky;
+          top: 0;
+          background-color: #f8f9fa;
+          font-weight: 600;
+          z-index: 10;
+        }
+  
+        .status-badge {
+          padding: 0.35rem 0.7rem;
+          border-radius: 20px;
+          font-size: 0.8rem;
+          font-weight: 500;
+          display: inline-block;
+          text-align: center;
+          min-width: 80px;
+  
+          &.active {
+            background-color: #28a745;
+            color: white;
+          }
+  
+          &.inactive {
+            background-color: #dc3545;
+            color: white;
+          }
+        }
+      }
+    }
+  
+    .charts-grid {
+      flex: 1;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+      min-height: 0; // Important for flex children
+  
+      .chart-card {
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        padding: 1.25rem;
+        display: flex;
+        flex-direction: column;
+  
+        .chart-title {
+          font-size: 1rem;
+          margin-bottom: 1rem;
+          color: #212529;
+          font-weight: 500;
+        }
+  
+        .chart-container {
+          flex: 1;
+          min-height: 250px;
+          position: relative;
+  
+          > div {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+          }
+        }
+      }
+    }
+  
+    // Tablet (768px - 991px)
+    @media (max-width: 991px) {
+      .dashboard-content {
+        padding: 1rem;
+        margin-left: 0;
+      }
+  
+      .users-table-wrapper {
+        height: 300px;
+  
+        table {
+          min-width: 800px;
+  
+          th, td {
+            padding: 0.6rem 0.8rem;
+            font-size: 0.9rem;
+          }
+  
+          .status-badge {
+            padding: 0.3rem 0.6rem;
+            min-width: 70px;
+          }
+        }
+      }
+  
+      .charts-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+  
+        .chart-card {
+          padding: 1rem;
+          
+          .chart-title {
+            font-size: 0.95rem;
+          }
+  
+          .chart-container {
+            min-height: 200px;
+          }
+        }
+      }
+    }
+  
+    // Mobile (< 768px)
+    @media (max-width: 767px) {
+      .dashboard-content {
+        padding: 0.75rem;
+        gap: 1rem;
+      }
+  
+      .users-table-wrapper {
+        height: 250px;
+  
+        h3 {
+          padding: 0.75rem;
+          font-size: 1.1rem;
+        }
+  
+        table {
+          min-width: 700px;
+  
+          th, td {
+            padding: 0.5rem 0.6rem;
+            font-size: 0.85rem;
+          }
+  
+          .status-badge {
+            padding: 0.25rem 0.5rem;
+            min-width: 60px;
+            font-size: 0.75rem;
+          }
+  
+          // Hide less important columns on mobile
+          th:nth-child(4), td:nth-child(4), /* DOB */
+          th:nth-child(6), td:nth-child(6) /* Registered On */ {
+            display: none;
+          }
+        }
+      }
+  
+      .charts-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+  
+        .chart-card {
+          padding: 0.75rem;
+          
+          .chart-title {
+            font-size: 0.9rem;
+            margin-bottom: 0.75rem;
+          }
+  
+          .chart-container {
+            min-height: 180px;
+          }
+        }
+      }
+    }
+  }

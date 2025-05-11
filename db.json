@@ -1,31 +1,31 @@
 {
   "users": [
     {
-      "id": "1",
-      "name": "John Doe",
-      "email": "john@example.com",
-      "phone": "1234567890",
-      "dob": "1990-01-01",
-      "status": "active",
-      "createdAt": "2023-01-15T10:00:00Z"
-    },
-    {
       "id": "2",
       "name": "Jane Smith",
       "email": "jane@example.com",
       "phone": "0987654321",
-      "dob": "1985-05-20",
+      "dob": "2010-09-19",
       "status": "inactive",
       "createdAt": "2023-02-20T14:30:00Z"
     },
     {
-      "id": "eead",
-      "name": "salam",
+      "id": "3",
+      "name": "salam2",
       "email": "salam@gmail.com",
       "phone": "1234567567",
       "dob": "2014-06-10",
+      "status": "active",      
+      "createdAt": "2023-02-20T14:30:00Z"
+    },
+    {
+      "id": "3311",
+      "name": "msd",
+      "email": "sdjjhf@gmail.com",
+      "phone": "2345554333",
+      "dob": "2008-02-12",
       "status": "active",
-      "createdAt": "2025-05-10T14:51:03.908Z"
+      "createdAt": "2025-05-10T17:55:42.140Z"
     }
   ]
 }

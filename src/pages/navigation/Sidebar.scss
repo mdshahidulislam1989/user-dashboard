@@ -1,0 +1,121 @@
+
+.sidebar {
+    background-color: #343a40;
+    color: white;
+    width: 250px;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding: 1rem;
+    border-right: 1px solid #495057;
+    transition: transform 0.3s ease;
+    z-index: 1000;
+  
+    .sidebar-header {
+      padding: 1rem 0;
+      border-bottom: 1px solid #495057;
+      margin-bottom: 1.5rem;
+  
+      h4 {
+        color: white;
+        margin: 0;
+      }
+    }
+  
+    .nav-link {
+      color: rgba(255, 255, 255, 0.8);
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      margin-bottom: 0.5rem;
+      transition: all 0.2s;
+  
+      &:hover {
+        color: white;
+        background-color: rgba(255, 255, 255, 0.1);
+        text-decoration: none;
+      }
+  
+      &.active {
+        color: white;
+        background-color: rgba(255, 255, 255, 0.2);
+      }
+    }
+  
+    .logout-btn {
+      color: rgba(255, 255, 255, 0.8);
+      border-color: rgba(255, 255, 255, 0.2);
+  
+      &:hover {
+        color: white;
+        border-color: white;
+        background-color: rgba(255, 0, 0, 0.1);
+      }
+    }
+  }
+  
+ 
+  @media (max-width: 768px) {
+    .sidebar {
+      transform: translateX(-100%);
+      
+      &.open {
+        transform: translateX(0);
+      }
+    }
+  
+    .sidebar-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 999;
+      display: none;
+  
+      &.open {
+        display: block;
+      }
+    }
+  }
+  
+  
+  .app-header {
+    background-color: #212529;
+    color: white;
+    padding: 1rem;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 60px;
+    z-index: 900;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  
+    .menu-toggle {
+      background: none;
+      border: none;
+      color: white;
+      font-size: 1.5rem;
+      cursor: pointer;
+      display: none;
+    }
+  
+    @media (max-width: 768px) {
+      .menu-toggle {
+        display: block;
+      }
+    }
+  }
+  
+  .main-content {
+    margin-left: 250px;
+    padding-top: 80px;
+  
+    @media (max-width: 768px) {
+      margin-left: 0;
+    }
+  }
