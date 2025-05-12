@@ -2,6 +2,17 @@ import { Bar, Pie, Doughnut, Line } from 'react-chartjs-2';
 import { Chart as ChartJS, registerables } from 'chart.js';
 ChartJS.register(...registerables);
 
+
+const chartOptions = {
+  responsive: true,
+  maintainAspectRatio: false,
+  plugins: {
+    legend: {
+      position: 'bottom',
+    }
+  }
+};
+
 export const BarChart = ({ data }) => {
   const chartData = {
     labels: data.map(user => user.name),
@@ -13,7 +24,11 @@ export const BarChart = ({ data }) => {
       },
     ],
   };
-  return <Bar data={chartData} />;
+  return (
+    <div className="chart-wrapper">
+      <Bar data={chartData} options={chartOptions} />
+    </div>
+  );
 };
 
 export const PieChart = ({ data }) => {
@@ -29,7 +44,11 @@ export const PieChart = ({ data }) => {
       },
     ],
   };
-  return <Pie data={chartData} />;
+  return (
+    <div className="chart-wrapper">
+      <Pie data={chartData} options={chartOptions} />
+    </div>
+  );
 };
 
 export const DonutChart = ({ data }) => {
@@ -50,7 +69,11 @@ export const DonutChart = ({ data }) => {
       },
     ],
   };
-  return <Doughnut data={chartData} />;
+  return (
+    <div className="chart-wrapper">
+      <Doughnut data={chartData} options={chartOptions} />
+    </div>
+  );
 };
 
 export const LineChart = ({ data }) => {
@@ -71,5 +94,9 @@ export const LineChart = ({ data }) => {
       },
     ],
   };
-  return <Line data={chartData} />;
+  return (
+    <div className="chart-wrapper">
+      <Line data={chartData} options={chartOptions} />
+    </div>
+  );
 };
